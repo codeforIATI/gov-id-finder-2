@@ -11,6 +11,7 @@
             v-model="selectedOrganisationID"
             :options="options"
             :placeholder="placeholder"
+            :filter-by="filterOptions"
             @search="fetchOptions"
             ref="search_organisation_id">
 
@@ -140,6 +141,10 @@ export default {
         title: 'Copied to clipboard',
         autoHideDelay: 5000,
       })
+    },
+    filterOptions (option, label, search) {
+      return ((option.label || '') + (option.code || '')
+        ).toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) > -1
     },
     fetchOptions (search, loading) {
       const lookup = search.substr(0, 3).toLowerCase()
