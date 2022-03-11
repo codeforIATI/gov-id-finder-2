@@ -1,6 +1,14 @@
+const routerBase = process.env.DEPLOY_ENV === 'WITH_SUBFOLDER' ? {
+  router: {
+    base: '/gov-id-finder-2/'
+  }
+} : {}
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  generate: {
+    fallback: true
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
