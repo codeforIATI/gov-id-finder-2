@@ -46,27 +46,30 @@
     </footer>
   </div>
 </template>
-
 <style>
+.navbar .navbar-toggler {
+  margin-left: 10px;
+  display: inherit;
+}
 </style>
 <script>
 import config from '../nuxt.config'
 
 export default {
-  data() {
+  head() {
     return {
       title: config.head.title,
       description: config.description,
+      script: [
+        {
+          src: 'https://codeforiati.org/sidebar/sidebar-rhs.min.js'
+        }
+      ]
     }
   },
   computed: {
   },
   methods: {
-  },
-  script: [
-    {
-      src: 'https://codeforiati.org/sidebar/sidebar-rhs.min.js'
-    }
-  ]
+  }
 }
 </script>
