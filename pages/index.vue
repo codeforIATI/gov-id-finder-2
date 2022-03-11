@@ -77,7 +77,7 @@
 }
 .organisation-data .organisation-option-label {
   flex-basis: 100%;
-  white-space: default;
+  white-space: normal;
 }
 .organisation-data .organisation-option-code {
   white-space: nowrap;
