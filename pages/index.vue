@@ -103,6 +103,7 @@
 }
 </style>
 <script>
+import axios from 'axios'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 import config from '../nuxt.config'
@@ -116,8 +117,7 @@ export default {
       selectedOrganisation: {},
       busy: false,
       noOptions: false,
-      lookup: '',
-      baseURL: config.axios.baseURL
+      lookup: ''
     }
   },
   head() {
@@ -128,6 +128,11 @@ export default {
       bodyAttrs: {
         'class': 'd-flex flex-column h-100'
       }
+    }
+  },
+  computed: {
+    baseURL() {
+      return this.$axios.defaults.baseURL
     }
   },
   components: {
@@ -154,7 +159,7 @@ export default {
         if (lookup.length === 3) {
           loading(true)
           this.selectedOrganisationID = null
-          this.$axios.get(`/data/lookup/${lookup}.json`
+          axios.get(`${this.baseURL}/data/lookup/${lookup}.json`
             ).then(options => {
               this.options = options.data.map(item => {
                 return {label: item[0], code: item[1]} })
@@ -168,7 +173,7 @@ export default {
     },
     fetchOrganisation (organisationID) {
       this.busy = true
-      this.$axios.get(`/data/${organisationID}.json`
+      axios.get(`${this.baseURL}/data/${organisationID}.json`
         ).then(organisation => {
 
         this.selectedOrganisation = organisation.data
